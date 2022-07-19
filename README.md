@@ -22,3 +22,14 @@ TBD
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
+# Acknowledgements 
+Most of the content was taken almost verbatim from the amazing [DALL-E prompt book](https://dallery.gallery/the-dalle-2-prompt-book/) by [@guyp](https://twitter.com/GuyP/)
+
+All of the images are copyright of @openAI
+
+This extension does NOT give you access to DALL-E, you are required to have access to use it. 
+
+This extension does NOT give you access to GPT-3, you are required to have an API key to use the GPT-3 features. 
+
+This extension is not affiliated with openAI. 
