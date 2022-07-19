@@ -12,7 +12,7 @@ FEATURES:
 ✨ Quality enhancing keywords   
 ✨ Photography related angles, lightning, shot compositions  
 ✨ Digital and 3D keywords   
-✨ Characters. 
+✨ Characters  
 🌟 Dark mode for the DALL-E UI  
 🤖 Have a GPT-3 API key? Get autocomplete and synonym help on the fly as you construct your prompt!  
 ✨ Select a part of the input to replace or get a synonym
