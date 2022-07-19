@@ -1,6 +1,6 @@
 {
   "name": "DALL-E prompt helper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 3,
   "description": "Add this extension to your DALL-E prompt to help you find the right prompt.",
   
@@ -36,7 +36,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [ "img/*", "icons/*"],
+      "resources": [ "img/*", "icons/*", "options.html"],
       "matches": [
         "https://labs.openai.com/*"
       ]

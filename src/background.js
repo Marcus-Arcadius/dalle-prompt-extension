@@ -7,10 +7,10 @@ let init = async function () {
     let { gpt3_api_key } = await storage.local.get("gpt3_api_key");
     if (!gpt3_api_key) {
       onMessage("get-synonym", () => {
-        return "Configure your GPT-3 API key in the options page.";
+        return "Configure your GPT-3 API key in the options page of the extension.";
       });
       onMessage("get-autocomplete", () => {
-        return ["Configure your GPT-3 API key in the options page."];
+        return ["Configure your GPT-3 API key in the options page of the extension."];
       });
       throw new Error("No GPT-3 API key found!");
     }
@@ -36,7 +36,7 @@ let init = async function () {
         return synonym.replace(/\n/g, "");
       } catch (e) {
         console.error(e);
-        return "";
+        return "Oops, there was an error getting a GPT-3 response";
       }
     });
     onMessage("get-autocomplete", async ({ data }) => {
@@ -74,10 +74,12 @@ let init = async function () {
         return prompt;
       } catch (e) {
         console.log(e);
+        return ["Oops, there was an error getting a GPT-3 response"];
       }
     });
   } catch (e) {
-    console.log("error", e);
+    console.log(e)
+    return ["Oops, there was an error getting a GPT-3 response"];
   }
 
   onMessage("get-stuff", (data) => {
