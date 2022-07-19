@@ -22,8 +22,8 @@ let template = `
 </a>
 <a id="gpt3-autocomplete" class="btn btn-small btn-outlined ">Autocomplete with GPT-3</a>
 
-<a href="${extension_url}options.html" target="_blank" class="btn btn-small btn-icon btn-options">
-<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+<a id="options-link"  class="btn btn-small btn-icon btn-options">
+<svg xmlns="http://www.w3.org/2000/svg" style="pointer-events:none" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
 </svg>
 
@@ -132,6 +132,14 @@ let inject = async function () {
     if (e.target.id == "prompt-helper-btn") {
       document.querySelector("#prompt-helper-drawer").classList.toggle("open");
     }
+    if (e.target.id == "options-link") {
+      if (runtime.openOptionsPage) {
+        runtime.openOptionsPage();
+      } else {
+        window.open(runtime.getURL('options.html'));
+      }
+    }
+
     if (e.target.id == "gpt3-synonym") {
       document.querySelector('.btn-options').classList.add('loading');
       
