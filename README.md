@@ -1,5 +1,3 @@
-![CleanShot 2022-07-19 at 10 54 55](https://user-images.githubusercontent.com/463317/179807500-d94bad54-f8e4-4ecd-b641-148267023c95.gif)
-
 
 # DALL-E prompt helper chrome extension
 
@@ -17,6 +15,10 @@ FEATURES:
 ✨ Characters
 🌟 Dark mode for the DALL-E UI
 🤖 Have a GPT-3 API key? Get autocomplete and synonym help on the fly as you construct your prompt! 
+
+# Preview 
+![CleanShot 2022-07-19 at 10 54 55](https://user-images.githubusercontent.com/463317/179807500-d94bad54-f8e4-4ecd-b641-148267023c95.gif)
+
 
 
 # Chrome webstore URL 
