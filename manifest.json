@@ -19,6 +19,7 @@
       "matches": [
         "https://labs.openai.com/*"
       ],
+      
       "js": [
         "src/inject/prompts.js",
         "src/inject/inject.js"

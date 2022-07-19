@@ -1,7 +1,7 @@
 /**
  * Place your custom CSS styles here.
  **/
-[data-theme="dark"]{
+html[data-theme="dark"]{
     --b0: #000;
     --b10: rgb(15 23 42);
     --b15: rgb(30 41 59);
