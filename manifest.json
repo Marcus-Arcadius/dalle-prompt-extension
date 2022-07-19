@@ -1,0 +1,44 @@
+{
+  "name": "DALL-E prompt helper",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "description": "Add this extension to your DALL-E prompt to help you find the right prompt.",
+  
+  "icons": {
+    "1024": "src/icons/icon2.png"
+  },
+  
+  "permissions": [
+    "tabs", "storage"
+  ],
+  "action": {
+    "default_popup": "options.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://labs.openai.com/*"
+      ],
+      "js": [
+        "src/inject/prompts.js",
+        "src/inject/inject.js"
+      ]
+    }
+   
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true 
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [ "img/*", "icons/*"],
+      "matches": [
+        "https://labs.openai.com/*"
+      ]
+    }
+  ]
+}
