@@ -8,12 +8,12 @@ Stuck?
 Look no further than Prompt helper! With over 270 carefully picked prompt styles, vibes, moods, inspiration keywords and GPT-3 autocomplete, this extension is perfect for anyone who needs a little help getting started. Plus, dark mode makes it easy on the eyes.
 
 FEATURES:
-✨ Over 270 keywords for creative prompts   
-✨ Quality enhancing keywords. 
-✨ Photography related angles, lightning, shot compositions. 
-✨ Digital and 3D keywords. 
+✨ Over 270 keywords for creative prompts  
+✨ Quality enhancing keywords   
+✨ Photography related angles, lightning, shot compositions  
+✨ Digital and 3D keywords   
 ✨ Characters. 
-🌟 Dark mode for the DALL-E UI. 
+🌟 Dark mode for the DALL-E UI  
 🤖 Have a GPT-3 API key? Get autocomplete and synonym help on the fly as you construct your prompt!  
 ✨ Select a part of the input to replace or get a synonym
 
