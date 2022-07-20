@@ -25,7 +25,7 @@ jobs:
         id: download
         name: 'Try to download the artifact from previous builds'
         with:
-          name: 'dalle-chrome-ext.v${{ github.event.release.tag_name }}.zip'
+          name: 'artifact-dalle-chrome-ext.v${{ github.event.release.tag_name }}.zip'
       
       - name: Upload & release
         uses: mnao305/chrome-extension-upload@3.0.0
