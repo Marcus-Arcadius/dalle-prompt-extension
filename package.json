@@ -1,5 +1,5 @@
 {
-  "name": "DALL-E prompt buddy",
+  "name": "dalle-prompt-helper-extension",
   "private": true,
   "version": "0.0.2",
   "type": "module",
