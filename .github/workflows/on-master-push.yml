@@ -7,5 +7,5 @@ on:
     branches: [ "master" ]
 
 jobs:
-  - uses: ./.github/workflows/build-reusable-workflow.yml
-    name: 'run build workflow'
+  build-master:
+    uses: ./.github/workflows/build-reusable-workflow.yml

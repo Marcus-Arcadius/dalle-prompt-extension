@@ -10,13 +10,13 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "publish-to-chrome-webstore"
+  build: 
+    uses: ./.github/workflows/build-reusable-workflow.yml
+        
   publish-to-chrome-webstore:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/build-reusable-workflow.yml
-        name: 'run build workflow'
-        
       - uses: actions/download-artifact@v3
         name: 'Try to download the artifact from previous builds'
         with:
