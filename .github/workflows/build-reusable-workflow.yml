@@ -5,6 +5,10 @@ name: Node.js CI
 
 on:
   workflow_call:
+    inputs:
+      version:
+        required: true
+        type: string
   
 jobs:
   build:
@@ -33,5 +37,5 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: 'dalle-chrome-ext.v${{steps.package-version.outputs.current-version}}.zip'
+        name: 'dalle-chrome-ext.v${{ inputs.version }}.zip'
         path: dist

@@ -12,6 +12,8 @@ jobs:
   # This workflow contains a single job called "publish-to-chrome-webstore"
   build: 
     uses: ./.github/workflows/build-reusable-workflow.yml
+    with:
+      version: ${{ github.event.release.tag_name }}
         
   publish-to-chrome-webstore:
     # The type of runner that the job will run on
