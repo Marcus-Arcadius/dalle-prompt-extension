@@ -10,4 +10,4 @@ jobs:
   build-on-master:
     uses: ./.github/workflows/build-reusable-workflow.yml
     with:
-      version: '${{ github.ref }}'
+      version: '${{ github.ref.name }}'
