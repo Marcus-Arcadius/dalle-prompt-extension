@@ -213,15 +213,65 @@ let inject = async function () {
     
 };
 
+//global event handlers 
+document.addEventListener("click", function (e) {
+  if(e.target.classList.contains('btn-uncrop')) {
+    let canvas = document.querySelector(".erasable-canvas canvas");
+    let smol_canvas = document.querySelector("#smol-canvas");
+    let ctx = canvas.getContext("2d");
+    let smol_ctx = smol_canvas.getContext("2d");
+
+    if(smol_canvas.dataset.empty == "true") {
+      smol_canvas.dataset.empty = "false";
+      smol_ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0,0,smol_canvas.width, smol_canvas.height)
+    }
+    
+  }
+  if(e.target.id == "top-right"){
+    console.log("clicked top-right")
+  }
+  if(e.target.id == "top-left"){
+    let canvas = document.querySelector(".erasable-canvas canvas");
+    let smol_canvas = document.querySelector("#smol-canvas");
+    let ctx = canvas.getContext("2d");
+    ctx.drawImage(smol_canvas, 0, 0, smol_canvas.width, smol_canvas.height, 0,0,canvas.width, canvas.height)
+    ctx.putImageData(smol_canvas.getContext('2d').getImageData(0,0,smol_canvas.width, smol_canvas.height),0, 0)
+  }
+  if(e.target.id == "bottom-right"){
+    console.log("clicked bottom-right")
+  }
+  if(e.target.id == "bottom-left"){
+    console.log("clicked bottom-left")
+  }
+})
+
 var observer = new MutationObserver((mutationsList) => {
-  for (var mutation of mutationsList) {
+  mutationsList.forEach((mutation) => {
     // Observing the input to close out the drawer when the user submits the form
     if (mutation.type == "childList" && mutation.addedNodes.length > 0) {
       //iterate through the added nodes
       for (var i = 0; i < mutation.addedNodes.length; i++) {
         let classes = mutation.addedNodes[i].classList;
-        if (classes?.contains("edit-page") || classes?.contains("edit-page")) {
+        if (classes?.contains("edit-page")) {
+          
           document.querySelector("#prompt-helper-drawer")?.classList.remove("open");
+        }
+        
+        if(classes && classes.contains("image-editor")) {  
+          const template = `
+          <div id="top-right" class="btn-icon btn-filled btn-secondary btn-uncrop">1</div>
+          <div id="top-left" class="btn-icon btn-filled btn-secondary btn-uncrop">2</div>
+          <div id="bottom-left" class="btn-icon btn-filled btn-secondary btn-uncrop">3</div>
+          <div id="bottom-right" class="btn-icon btn-filled btn-secondary btn-uncrop">4</div>`
+          document.querySelector(".image-editor-controls").insertAdjacentHTML("afterbegin", template);
+          let canvas = document.querySelector(".erasable-canvas canvas");
+          let smol_canvas = document.createElement("canvas");
+          smol_canvas.id = "smol-canvas";
+          smol_canvas.dataset.empty = "true";
+          smol_canvas.width = canvas.offsetWidth / 2;
+          smol_canvas.height = canvas.offsetHeight / 2;
+          
+          document.body.insertAdjacentElement("beforeend", smol_canvas);
         }
       }
     }
@@ -232,7 +282,7 @@ var observer = new MutationObserver((mutationsList) => {
     if (form != null) {
       inject();
     }
-  }
+  })
 });
 const config = { childList: true, subtree: true };
 observer.observe(document.body, config);
