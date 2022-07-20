@@ -8,9 +8,6 @@ on:
 
 jobs:
   build-on-master:
-    runs-on: ubuntu-latest
-    steps:
-      - name: build-master
-        uses: ./.github/workflows/build-reusable-workflow.yml
-        with:
-          version: '${{ github.ref }}'
+    uses: ./.github/workflows/build-reusable-workflow.yml
+    with:
+      version: '${{ github.ref }}'
