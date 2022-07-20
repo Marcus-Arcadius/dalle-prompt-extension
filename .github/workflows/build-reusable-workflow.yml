@@ -33,5 +33,5 @@ jobs:
 
     - uses: actions/upload-artifact@v3
       with:
-        name: 'dalle-chrome-ext.v${{steps.package-version.outputs.current-version}}'
+        name: 'dalle-chrome-ext.v${{steps.package-version.outputs.current-version}}.zip'
         path: dist
