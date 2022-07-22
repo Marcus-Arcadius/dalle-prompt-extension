@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node_modules/.bin/zip-build dist build -t %NAME%_%VERSION%.%EXT%",
+    "build": "vite build",
+    "build-v2": "vite build --mode=manifest2",
+    "buildzip": "vite build && node_modules/.bin/zip-build dist build -t %NAME%_%VERSION%.%EXT%",
     "preview": "vite preview"
   },
   "dependencies": {
