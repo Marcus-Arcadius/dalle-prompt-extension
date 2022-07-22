@@ -1,12 +1,11 @@
 {
-  "name": "DALL-E prompt buddy",
+  "name": "dalle-prompt-helper-extension",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build-v2": "vite build --mode=manifest2",
     "buildzip": "vite build && node_modules/.bin/zip-build dist build -t %NAME%_%VERSION%.%EXT%",
     "preview": "vite preview"
   },

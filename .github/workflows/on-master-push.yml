@@ -1,0 +1,13 @@
+name: On master push
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-on-master:
+    uses: ./.github/workflows/build-reusable-workflow.yml
+    with:
+      version: '${{ github.ref_name }}'
