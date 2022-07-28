@@ -257,7 +257,7 @@ var observer = new MutationObserver((mutationsList) => {
           document.querySelector("#prompt-helper-drawer")?.classList.remove("open");
         }
         
-        if(classes && classes.contains("image-editor")) {  
+        if(classes && classes.contains("page-wrapper") && document.querySelector(".image-editor-controls")) {  
           const template = `
           <div id="top-right" class="btn-icon btn-filled btn-secondary btn-uncrop">1</div>
           <div id="top-left" class="btn-icon btn-filled btn-secondary btn-uncrop">2</div>
@@ -271,7 +271,7 @@ var observer = new MutationObserver((mutationsList) => {
           smol_canvas.width = canvas.offsetWidth / 2;
           smol_canvas.height = canvas.offsetHeight / 2;
           
-          document.body.insertAdjacentElement("beforeend", smol_canvas);
+          document.querySelector('.page-wrapper').insertAdjacentElement("beforeend", smol_canvas);
         }
       }
     }

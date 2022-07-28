@@ -206,3 +206,15 @@ html[data-theme="dark"]{
   .hist-new-session-btn.btn-filled{
     background-color: inherit;
   }
+
+/* Injectec canvas and buttons stuff */
+#smol-canvas{
+    visibility: hidden;
+    display: none;
+}
+#bottom-right{
+
+}
+#bottom-left{
+
+}
