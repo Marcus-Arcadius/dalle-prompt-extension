@@ -4,6 +4,9 @@ import { sendMessage, onMessage } from 'webext-bridge';
 import '/src/themeHandler.js';
 import "./inject.css"
 import { applyTheme } from '../themeHandler';
+import * as JSZip from 'jszip';
+import { saveAs } from 'file-saver';
+
 let injected = function () {
   return !!document.querySelector("#prompt-helper-btn");
 };
@@ -213,6 +216,44 @@ let inject = async function () {
     
 };
 
+let injectDownloadButton = async function () {
+  let downloadButton = document.createElement("div");
+  downloadButton.id = "download-button";
+  downloadButton.className = "body-small link-style";
+  downloadButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+</svg>Download Zip with Images`;
+  downloadButton.addEventListener("click", async function (e) {
+    let input = document.querySelector(".image-prompt-input");
+    let value = input.value;
+    
+    var zip = new JSZip();
+    zip.file(`${value}.txt`, `Prompt: ${value}\r\nUrl: ${window.location.href}`);
+    
+    let images = document.querySelectorAll(".task-page-generations-grid img");
+    let signature = document.createElement('img');
+    let url = svgToDataURL(document.querySelector(".image-signature").outerHTML);
+    await new Promise(r => signature.onload=r, signature.src=url);
+    zip.file("signature.png", signature.src);
+    for (let i = 0; i < images.length; i++) {
+      let img = images[i];
+      let canvas = document.createElement("canvas");
+      canvas.width = canvas.height = 1024;
+      let ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+      ctx.drawImage(signature, canvas.width-80, canvas.height-16);
+      let blob = await new Promise((resolve, reject) => {
+        canvas.toBlob(resolve, "image/png");
+      })
+      zip.file(`${i}.png`, blob);
+    }
+    
+    let zipContent = await zip.generateAsync({type:"blob"})
+    saveAs(zipContent, `${value}.zip`);
+  });
+  document.querySelector(".task-page-generations").appendChild(downloadButton);
+}
+
 var observer = new MutationObserver((mutationsList) => {
   for (var mutation of mutationsList) {
     // Observing the input to close out the drawer when the user submits the form
@@ -223,6 +264,11 @@ var observer = new MutationObserver((mutationsList) => {
         if (classes?.contains("edit-page") || classes?.contains("edit-page")) {
           document.querySelector("#prompt-helper-drawer")?.classList.remove("open");
         }
+      }
+
+      // check if .task-page-generations is present
+      if (document.querySelector(".task-page-generations") && !document.querySelector("#download-button")) {
+        injectDownloadButton();
       }
     }
 
@@ -263,4 +309,14 @@ function checkForSelection(){
       gpt_btn.classList.remove("selection");
       gpt_btn.dataset.selection = ""; 
     }
+}
+const svgToDataURL = svgStr => {
+	const encoded = encodeURIComponent(svgStr)
+		.replace(/'/g, '%27')
+		.replace(/"/g, '%22')
+
+	const header = 'data:image/svg+xml,'
+	const dataUrl = header + encoded
+
+	return dataUrl
 }

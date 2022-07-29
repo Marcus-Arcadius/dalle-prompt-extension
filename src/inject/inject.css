@@ -54,6 +54,7 @@ html[data-theme="dark"]{
     opacity: 0.8;
     transition: all 0.3s ease-in-out;
     pointer-events: none;
+    left: -4px;
 }
 [data-theme="light"] .dark-mode-active{
     left: -4px;
@@ -206,3 +207,16 @@ html[data-theme="dark"]{
   .hist-new-session-btn.btn-filled{
     background-color: inherit;
   }
+
+#download-button{
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    position: absolute;
+    left: 0;
+}
+
+#download-button svg{
+width: 14px;
+height: 14px;
+}
