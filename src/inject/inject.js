@@ -2,10 +2,12 @@
 import {runtime, storage} from 'webextension-polyfill';
 import { sendMessage, onMessage } from 'webext-bridge'; 
 import '/src/themeHandler.js';
-import "./inject.css"
 import { applyTheme } from '../themeHandler';
 import * as JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { uniq } from 'lodash';
+//injecting css here is the way to do HMR properly in a chrome extension
+import './inject.css'
 
 let injected = function () {
   return !!document.querySelector("#prompt-helper-btn");
@@ -79,19 +81,33 @@ let constructUi = function () {
     container.classList.add("helper-drawer");
     
     container.id = "prompt-helper-drawer";
+
+    container.insertAdjacentHTML("afterBegin", `<div class="helper-drawer-header"></div>`);
     htmlResult.appendChild(container);
     htmlResult
-        .querySelector("#prompt-helper-drawer")
+        .querySelector(".helper-drawer-header")
         .insertAdjacentHTML("beforeEnd",darkModeToggle)
+    
+    let categories = uniq(Object.values(window.prompts).map(x => {
+      if (x.category) {
+        return `<a href="#" data-scroll-to="${x.category}" class="category-link btn btn-small btn-outlined">${x.category}</a>`;
+      }
+    })); 
+
+    htmlResult
+      .querySelector(".helper-drawer-header")
+      .insertAdjacentHTML("afterBegin", `<div class="categories"> <span class="categories-title">Prompt Categories: </span>${categories.join(' ')}  </div>`);
+    
     for (let prompt in window.prompts) {
       let promptObj = window.prompts[prompt];
       let promptHtml = `
+        <section class="prompt-group" id="${promptObj.category}">
 				<h4 class="prompt-group-title" title="${promptObj.description}">${promptObj.title}</h4>
 				
-				<div class="prompt-group-items" data-prefix="${promptObj.prefix}" data-suffix="${promptObj.suffix}">`;
+				<div class="prompt-group-items" data-prefix="${promptObj.prefix}" data-scroll="${promptObj.category}" data-suffix="${promptObj.suffix}">`;
       for (let item of promptObj.items) {
         promptHtml += `<a 
-                class="prompt-group-item ${!item.img ? "btn btn-small btn-outlined" : ""} " 
+                class="prompt-group-item ${!item.img ? "body-small link-style" : ""} " 
 								title="cmd+click to randomize : ${item.description}"
 								data-title="${item.title}"
                 ${item.prefix ? "data-prefix='"+item.prefix+"'" : ""} 
@@ -104,7 +120,7 @@ let constructUi = function () {
         }
         promptHtml += `</a>`;
       }
-      promptHtml += `</div>`;
+      promptHtml += `</div></section>`;
       htmlResult
         .querySelector("#prompt-helper-drawer")
         .appendChild(
@@ -135,8 +151,7 @@ let inject = async function () {
     if (e.target.id == "prompt-helper-btn") {
       document.querySelector("#prompt-helper-drawer").classList.toggle("open");
     }
-
-
+    
     if (e.target.id == "gpt3-synonym") {
       document.querySelector('.btn-options').classList.add('loading');
       
@@ -180,6 +195,12 @@ let inject = async function () {
   document
     .querySelector("#prompt-helper-drawer")
     .addEventListener("click", function (e) {
+      if(e.target.matches(".category-link")){
+        let category = e.target.dataset.scrollTo;
+        let t = document.querySelector(`[data-scroll="${category}"]`);
+        t.scrollIntoView({behavior: "smooth", block: "end"});
+        document.querySelector("#prompt-helper-drawer").scrollTo({top: t.offsetTop - 120, behavior: "smooth"});
+      }
       
       let suffix = e.target.dataset.suffix || e.target.parentNode.dataset.suffix || "";
       let prefix = e.target.dataset.prefix || e.target.parentNode.dataset.prefix || "";
@@ -233,7 +254,12 @@ let injectDownloadButton = async function () {
     let images = document.querySelectorAll(".task-page-generations-grid img");
     let signature = document.createElement('img');
     let url = svgToDataURL(document.querySelector(".image-signature").outerHTML);
-    await new Promise(r => signature.onload=r, signature.src=url);
+    await storage.local.get().then(function (result) { 
+      console.log(result);
+      //read storage and include or exclude watermark based on preference
+      signature.src = (result.watermark !== 'exclude') ? url : '';
+    });
+    
     zip.file("signature.png", signature.src);
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
@@ -267,7 +293,7 @@ var observer = new MutationObserver((mutationsList) => {
       }
 
       // check if .task-page-generations is present
-      if (document.querySelector(".task-page-generations") && !document.querySelector("#download-button")) {
+      if (document.querySelector(".task-page-flag-desktop") && !document.querySelector("#download-button")) {
         injectDownloadButton();
       }
     }

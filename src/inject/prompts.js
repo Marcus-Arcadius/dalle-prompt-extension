@@ -2,6 +2,7 @@ window.prompts = {
   mood: {
     title: "Mood modifiers",
     description: "Happy/Sad keywords",
+    category: "mood",
     prefix: " ",
     suffix: " ",
     items: [
@@ -136,120 +137,11 @@ window.prompts = {
       },
     ],
   },
-  vibes: {
-    title: "Vibes and styles",
-    description: "Vibes keywords",
-    prefix: " ",
-    suffix: " style ",
-    items: [
-      {
-        title: "Vaporware",
-        img: "vaporware.jpg",
-        description: "Vaporwavre style",
-        type: "toggle",
-        variants: ["neon", "pink", "blue", "geometric", "futuristic", "'80s"],
-      },
-      {
-        title: "Post-Apocalyptic",
-        img: "post-apocalyptic.jpg",
-        description: "Post apocalyptic style",
-        type: "toggle",
-        variants: ["grey", "desolate", "stormy", "fire", "decay"],
-      },
-      {
-        title: "Gothic ,Fantasy",
-        img: "gothic.jpg",
-        description:
-          "Gothic fantrasy style, stone, dark, lush, nature, mist, mystery, angular",
-        type: "toggle",
-        variants: [
-          "stone",
-          "dark",
-          "lush",
-          "nature",
-          "mist",
-          "mystery",
-          "angular",
-        ],
-      },
-      {
-        title: "Cybernetic, sci-fi",
-        img: "cybernetic.jpg",
-        description: "Cybernetic, sci-fi: glows, greens, metals, armor, chrome",
-        type: "toggle",
-        variants: ["glows, greens, metals, armor", "chrome"],
-      },
-      {
-        title: "Steampunk",
-        img: "steampunk.jpg",
-        description: "Steampunk: gold, copper, brass, Victoriana",
-        type: "toggle",
-        variants: ["gold", "copper", "brass", "Victoriana"],
-      },
-      {
-        title: "Memphis",
-        img: "memphis.jpg",
-        description:
-          "Memphis, Memphis Group, 1980s,bold, kitch, colourful, shapes",
-        type: "toggle",
-        variants: [
-          "Memphis",
-          "Memphis Group",
-          "1980s",
-          "bold",
-          "kitch",
-          "colourful",
-          " shapes",
-        ],
-      },
-      {
-        title: "Dieselpunk",
-        img: "dieselpunk.jpg",
-        description:
-          "Dieselpunk, grimy, steel, oil, '50s,mechanised, punk cousin of steampnk",
-        type: "toggle",
-        variants: [
-          "grimy",
-          "steel",
-          "oil",
-          "'50s",
-          "mechanised",
-          "punk cousin of steampnk",
-        ],
-      },
-      {
-        title: "Afrofuturism",
-        img: "afrofuturism.jpg",
-        description: "Afrofuturism: futuristic, and African!",
-        type: "toggle",
-        variants: ["afrofuturism"],
-      },
-      {
-        title: "Cyberpunk",
-        img: "cyberpunk.jpg",
-        description: "Cyberpunk, 1990s, dyed hair,spiky, graphic elements",
-        type: "toggle",
-        variants: [
-          "cyberpunk",
-          "1990s",
-          "dyed hair",
-          "spiky",
-          "graphic elements",
-        ],
-      },
-      {
-        title: "Biopunk, organic",
-        img: "biopunk.jpg",
-        description:
-          "Biopunk, organic, greens,slimes, plants, futuristic, weird",
-        type: "toggle",
-        variants: ["greens", "slimes", "plants", "futuristic", "weird"],
-      },
-    ],
-  },
+
   "Illustration - digital media": {
     title: "Illustration - digital media",
     description: "Helps create gorgerous high quality prints",
+    category: "illustration",
     prefix: " ",
     suffix: " ",
     items: [
@@ -315,6 +207,7 @@ window.prompts = {
   "Illustration - 3D + Textured": {
     title: "Illustration - 3D + Textured",
     description: "Gorgeous 3d models",
+    category: "illustration",
     prefix: " ",
     suffix: " ",
     items: [
@@ -324,6 +217,16 @@ window.prompts = {
         description: "isometric 3D",
         type: "toggle",
         variants: ["isometric 3D"],
+      },
+      {
+        title: "icon",
+        img: "icons.jpeg",
+        prefix:"",
+        suffix: " of a <cute unicorn head> in metallic rainbow iridescent material, 3D render isometric perspective rendered in Cinema 4D on dark background",
+        description: "icon of a <cute unicorn head> in metallic rainbow iridescent material, 3D render isometric perspective rendered in Cinema 4D on dark background",
+        type: "toggle",
+        variants: ["isometric 3D"],
+        source: "https://twitter.com/0xCharlota/status/1544353326078349312"
       },
       {
         title: "3D render",
@@ -391,6 +294,7 @@ window.prompts = {
   "Illustration - character + cartoon": {
     title: "Illustration - character + cartoon",
     description: "Cartoonish characters",
+    category: "illustration",
     prefix: " ",
     suffix: " ",
     items: [
@@ -517,6 +421,7 @@ window.prompts = {
   "Illustration - analog, colour": {
     title: "Illustration - analog, colour",
     description: "",
+    category: "illustration",
     prefix: " ",
     suffix: " ",
     items: [
@@ -603,6 +508,7 @@ window.prompts = {
   "Illustration - analog, monochrome": {
     title: "Illustration - analog, monochrome",
     description: "prefixed with in the style of X",
+    category: "illustration",
     prefix: " ",
     suffix: " ",
     items: [
@@ -679,6 +585,7 @@ window.prompts = {
   "Illustration - instructional": {
     title: "Illustration - instructional",
     description: "",
+    category: "illustration",
     prefix: " ",
     suffix: " ",
     items: [
@@ -766,6 +673,7 @@ window.prompts = {
     title: "Photography - Proximity",
     description:
       "DALL•E interprets these pretty loosely, and often provides candidate from the 'neighbour' framing, e.g: a close-up prompt might get extreme close-ups and medium shots in the mix. in",
+    category: "photography",
     prefix: " ",
     suffix: " ",
     items: [
@@ -815,8 +723,8 @@ window.prompts = {
   },
   "Photography - Angles": {
     title: "Photography - Angles",
-    description:
-      "Angles of Photography, can be combined with the 'Proximity' keywords",
+    description: "Angles of Photography, can be combined with the 'Proximity' keywords",
+    category: "photography",
     prefix: " ",
     suffix: " ",
     items: [
@@ -869,6 +777,7 @@ window.prompts = {
     title: "Photography - Lenses",
     description:
       "Specific lenses have specific styles and features, and can be combined with the 'Angles' keywords",
+    category: "photography",
     prefix: " ",
     suffix: " ",
     items: [
@@ -958,7 +867,7 @@ window.prompts = {
       },
       {
         title: "deep depth",
-        img: "fish_eye.jpg",
+        img: "deep_depth.jpg",
         description: "Deep depth of field, make all elements sharp",
         type: "toggle",
         variants: ["Deep depth of field", "make all elements sharp"],
@@ -968,6 +877,7 @@ window.prompts = {
   "Photography - Lightning prompts": {
     title: "Photography - Lightning prompts",
     description: "Add a lightning prompt to liven your DALL-E generated photos",
+    category: "photography",
     prefix: " ",
     suffix: " lighting",
     items: [
@@ -1081,11 +991,11 @@ window.prompts = {
       },
     ],
   },
-
   "Photography - Famous photographer styles": {
     title: "Famous photographer style [adds in the style of...]",
     description:
       "DALL-E can generate a photo with the style of a famous photographer",
+    category: "photography",
     prefix: ", in the style of ",
     suffix: " ",
     items: [
@@ -1159,6 +1069,118 @@ window.prompts = {
         description: "Vivian Maier",
         type: "toggle",
         variants: ["Vivian Maier"],
+      },
+    ],
+  },
+  vibes: {
+    title: "Vibes and styles",
+    description: "Vibes keywords",
+    category: "vibes",
+    prefix: " ",
+    suffix: " style ",
+    items: [
+      {
+        title: "Vaporware",
+        img: "vaporware.jpg",
+        description: "Vaporwavre style",
+        type: "toggle",
+        variants: ["neon", "pink", "blue", "geometric", "futuristic", "'80s"],
+      },
+      {
+        title: "Post-Apocalyptic",
+        img: "post-apocalyptic.jpg",
+        description: "Post apocalyptic style",
+        type: "toggle",
+        variants: ["grey", "desolate", "stormy", "fire", "decay"],
+      },
+      {
+        title: "Gothic ,Fantasy",
+        img: "gothic.jpg",
+        description:
+          "Gothic fantrasy style, stone, dark, lush, nature, mist, mystery, angular",
+        type: "toggle",
+        variants: [
+          "stone",
+          "dark",
+          "lush",
+          "nature",
+          "mist",
+          "mystery",
+          "angular",
+        ],
+      },
+      {
+        title: "Cybernetic, sci-fi",
+        img: "cybernetic.jpg",
+        description: "Cybernetic, sci-fi: glows, greens, metals, armor, chrome",
+        type: "toggle",
+        variants: ["glows, greens, metals, armor", "chrome"],
+      },
+      {
+        title: "Steampunk",
+        img: "steampunk.jpg",
+        description: "Steampunk: gold, copper, brass, Victoriana",
+        type: "toggle",
+        variants: ["gold", "copper", "brass", "Victoriana"],
+      },
+      {
+        title: "Memphis",
+        img: "memphis.jpg",
+        description:
+          "Memphis, Memphis Group, 1980s,bold, kitch, colourful, shapes",
+        type: "toggle",
+        variants: [
+          "Memphis",
+          "Memphis Group",
+          "1980s",
+          "bold",
+          "kitch",
+          "colourful",
+          " shapes",
+        ],
+      },
+      {
+        title: "Dieselpunk",
+        img: "dieselpunk.jpg",
+        description:
+          "Dieselpunk, grimy, steel, oil, '50s,mechanised, punk cousin of steampnk",
+        type: "toggle",
+        variants: [
+          "grimy",
+          "steel",
+          "oil",
+          "'50s",
+          "mechanised",
+          "punk cousin of steampnk",
+        ],
+      },
+      {
+        title: "Afrofuturism",
+        img: "afrofuturism.jpg",
+        description: "Afrofuturism: futuristic, and African!",
+        type: "toggle",
+        variants: ["afrofuturism"],
+      },
+      {
+        title: "Cyberpunk",
+        img: "cyberpunk.jpg",
+        description: "Cyberpunk, 1990s, dyed hair,spiky, graphic elements",
+        type: "toggle",
+        variants: [
+          "cyberpunk",
+          "1990s",
+          "dyed hair",
+          "spiky",
+          "graphic elements",
+        ],
+      },
+      {
+        title: "Biopunk, organic",
+        img: "biopunk.jpg",
+        description:
+          "Biopunk, organic, greens,slimes, plants, futuristic, weird",
+        type: "toggle",
+        variants: ["greens", "slimes", "plants", "futuristic", "weird"],
       },
     ],
   },

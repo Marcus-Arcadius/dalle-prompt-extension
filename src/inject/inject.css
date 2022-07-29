@@ -31,8 +31,8 @@ html[data-theme="dark"]{
 .dark-mode-toggle{
     color: var(--b100);
     position: absolute;
-    right: 10px;
-    top: 100px;
+    right: 20px;
+    top: 20px;
 }
 .dark-mode-toggle .btn-icon{
     width:18px;
@@ -102,19 +102,51 @@ html[data-theme="dark"]{
     z-index: 1;
     
     margin-top: -10px;
-    padding-top: 30px;
+    padding-top: 0px;
     border-radius: 0 0 5px 5px;
     transition: all 350ms ease-in-out;
     overflow:hidden;
     visibility: hidden;
-    z-index: -1;
+    z-index: 1;
+    position: relative;
 }
 .helper-drawer.open{
     height: calc(100vh - 200px);
     visibility: visible;
     overflow-y: scroll;
 }
+.helper-drawer-header{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--b20);
+    padding: 20px 0px 10px;
+    top: 0;
+    z-index: 10;
+}
 
+.categories{
+    
+}
+.mobile .categories-title{
+    display: none; 
+}
+
+.prompt-group{
+    padding:0 0 0px;
+}
+.prompt-group-title{
+    position: sticky;
+    background-color: var(--b20);
+    top: 60px;
+    z-index: 1;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin:0;
+    
+}
 .prompt-group-items{
     grid-gap: 4px;
     display: grid;
@@ -122,10 +154,10 @@ html[data-theme="dark"]{
     }
 .prompt-group-item{
     
-    
+    padding-bottom: 10px;
 }
 .image-prompt-form{
-    z-index: 1;
+    z-index: 2;
     position: relative;
 }
 .prompt-group-item:hover img {
