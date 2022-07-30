@@ -12,11 +12,13 @@ import Button from "./components/Button.vue";
 let gpt3_api_key = ref("");
 let theme = ref("system");
 let watermark = ref("include");
+let webhookurl = ref("");
 
 storage.local.get().then(function (result) {
   gpt3_api_key.value = result["gpt3_api_key"];
   theme.value = result.theme || theme.value;
   watermark.value = result.watermark || watermark.value;
+  webhookurl.value = result.webhookurl || webhookurl.value;
   applyTheme(result.theme);
 });
 
@@ -25,6 +27,7 @@ let save = function (e) {
   storage.local.set({ gpt3_api_key: gpt3_api_key.value });
   storage.local.set({ theme: theme.value });
   storage.local.set({ watermark: watermark.value });
+  storage.local.set({ webhookurl: webhookurl.value });
   setTimeout(() => {
     window.location.reload();
   }, 500);
@@ -35,6 +38,7 @@ let reset = function () {
   storage.local.set({ gpt3_api_key: gpt3_api_key.value });
   storage.local.set({ theme: "system" });
   storage.local.set({ watermark: "include" });
+  storage.local.set({ webhookurl: "" });
   setTimeout(() => {
     window.location.reload();
   }, 500);
@@ -45,7 +49,7 @@ applyTheme();
 
 <template>
   <div
-    class="container px-4 mx-auto max-w-4xl mt-5 mb-8 first:mt-0 last:mb-0 pt-2 rounded-xl shadow-lg overflow-hidden dark:ring-1 dark:ring-white/10 dark:ring-inset prose dark:prose-invert prose-slate bg-slate-100 dark:bg-gray-800 top-5 relative"
+    class="container px-4 mx-auto max-w-4xl min-w-[400px] lg:w-500 mt-5 mb-8 first:mt-0 last:mb-0 pt-2 rounded-xl shadow-lg overflow-hidden dark:ring-1 dark:ring-white/10 dark:ring-inset prose dark:prose-invert prose-slate bg-slate-100 dark:bg-gray-800 top-5 relative"
   >
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="">
@@ -53,7 +57,8 @@ applyTheme();
         <div class="">
           <h3 class="text-lg font-medium leading-6">DALL-E Prompt helper settings</h3>
           <p class="max-w-2xl mt-1 text-sm">
-            These settings are used to help you configure the DALL-E Prompt helper.
+            These settings are used to help you configure the DALL-E Prompt helper. (Don't
+            forget to click "Save" ;)
           </p>
         </div>
 
@@ -216,8 +221,37 @@ applyTheme();
               </div>
             </div>
           </div>
-
-          <div class="pt-5 no-prose">
+          <div class="pt-5">
+            <div class="mt-6 space-y-6 sm:mt-5 sm:space-y-5">
+              <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-5">
+                <label for="apikey" class="block text-sm font-medium sm:mt-px sm:pt-2">
+                  Webhook configuration
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                  <div class="flex max-w-lg rounded-md shadow-sm">
+                    <span
+                      class="inline-flex items-center px-3 border border-r-0 border-gray-300 rounded-l-md sm:text-sm"
+                    >
+                      URL
+                    </span>
+                    <input
+                      type="text"
+                      name="webhookurl"
+                      v-model="webhookurl"
+                      id="webhookurl"
+                      autocomplete="apikey"
+                      class="flex-1 block w-full h-10 min-w-0 rounded-none rounded-r-md sm:text-sm dark:bg-slate-900 dark:text-slate-100"
+                    />
+                  </div>
+                  <p class="max-w-2xl mt-1 text-sm">
+                    Add a webhook URL here to post images to a custom endpoint. Can be
+                    useful for zapier/notion integraiton for example.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pt-5 no-prose sticky bottom-0">
             <div class="flex justify-end">
               <Button @click="reset" class="btn-secondary" icon="delete">
                 Reset settings

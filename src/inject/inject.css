@@ -252,3 +252,26 @@ html[data-theme="dark"]{
 width: 14px;
 height: 14px;
 }
+
+#webhook-button{
+    align-items: center;
+    bottom: 0;
+    display: flex;
+    position: absolute;
+    left: 200px;
+}
+#webhook-button .btn-spinner{
+    display: none;
+}
+#webhook-button.loading .btn-spinner{
+    display: flex;
+    position: relative;
+}
+#webhook-button.loading .icon{
+    display: none;
+}
+
+#webhook-button svg{
+width: 14px;
+height: 14px;
+}
