@@ -1,5 +1,7 @@
 import { onMessage, sendMessage } from "webext-bridge";
 import { storage } from "webextension-polyfill";
+import {dataUriToBlob} from "./dataUriToBlob.js";
+
 let OPENAI_URL = "https://api.openai.com/v1/edits";
 
 let init = async function () {
@@ -94,4 +96,29 @@ storage.onChanged.addListener((changes) => {
   if (changes.gpt3_api_key) {
     init();
   }
+});
+
+onMessage("post-webhook", async ({data}) => {
+  let files = data.files;
+  
+  const formData = new FormData();
+  
+  formData.append("prompt", data.prompt);
+  formData.append("url", data.url);
+  for(let i = 0; i < files.length; i++){
+    formData.append(`file-${i}`, await dataUriToBlob(files[i]), `${i}.png`);
+  }
+  let {webhookurl} = await storage.local.get("webhookurl");
+  if(!webhookurl){
+    throw new Error("Configure your webhook URL in the options page of the extension.")
+  }
+  let result = await fetch(webhookurl, {
+    method: 'POST',
+    body: formData,      
+    mode: 'no-cors',
+  });
+  
+  return {
+    result: result.body,
+  };
 });
