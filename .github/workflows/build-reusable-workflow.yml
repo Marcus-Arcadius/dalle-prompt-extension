@@ -42,4 +42,4 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: 'artifact-dalle-chrome-ext.v${{ inputs.version }}.zip'
-        path: 'dalle-chrome-ext.v${{ inputs.version }}.zip'
+        path: 'dalle-chrome-ext.v${{ inputs.version || steps.package-version.outputs.current-version }}.zip'

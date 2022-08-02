@@ -9,5 +9,3 @@ on:
 jobs:
   build-on-master:
     uses: ./.github/workflows/build-reusable-workflow.yml
-    with:
-      version: 'crx-build-on-master'
