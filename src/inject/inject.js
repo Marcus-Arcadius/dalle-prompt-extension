@@ -3,7 +3,7 @@ import {runtime, storage} from 'webextension-polyfill';
 import { sendMessage, onMessage } from 'webext-bridge'; 
 import '/src/themeHandler.js';
 import { applyTheme } from '../themeHandler';
-import * as JSZip from 'jszip';
+import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { uniq } from 'lodash';
 //injecting css here is the way to do HMR properly in a chrome extension
