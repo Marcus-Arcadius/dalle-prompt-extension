@@ -1,6 +1,6 @@
 {
   "name": "DALL-E prompt helper",
-  "version": "0.1.0",
+  "version": "__VERSION_UPDATES_IN_PACKAGE_JSON_",
   "manifest_version": 3,
   "description": "Add this extension to your DALL-E prompt to help you find the right prompt.",
   

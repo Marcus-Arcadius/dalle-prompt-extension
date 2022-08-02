@@ -22,13 +22,17 @@ FEATURES:
 
 ![CleanShot 2022-07-19 at 11 03 02](https://user-images.githubusercontent.com/463317/179808286-0ad657c6-b783-4a24-8dca-69c9bf89b527.gif)
 
+# Downloading 
+![CleanShot 2022-08-02 at 11 29 04](https://user-images.githubusercontent.com/463317/182438408-a8d344a5-99c0-4b3c-bcd3-f453578e8a71.gif)
+
+# Webhook 
+
 
 # Chrome webstore URL 
 
-TBD
-## Recommended IDE Setup
+[![Chrome Webstore](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/iNEddTyWiMfLSwFD6qGq.png)](https://chrome.google.com/webstore/detail/dall-e-prompt-helper/hjhagfbhighhchddcbejligbanloandc)
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+
 
 # Acknowledgements 
 Most of the content was taken almost verbatim from the amazing [DALL-E prompt book](https://dallery.gallery/the-dalle-2-prompt-book/) by [@guyp](https://twitter.com/GuyP/)
