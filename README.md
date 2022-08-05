@@ -39,6 +39,6 @@ This extension does NOT give you access to DALL-E, you are required to have acce
 
 This extension does NOT give you access to GPT-3, you are required to have an API key to use the GPT-3 features. 
 
-This extension is not affiliated with openAI. 
+This extension is not affiliated with OpenAI. 
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/altryne)
