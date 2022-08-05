@@ -1,4 +1,3 @@
-// find .image-prompt-form
 import {runtime, storage} from 'webextension-polyfill';
 import { sendMessage, onMessage } from 'webext-bridge'; 
 import '/src/themeHandler.js';
@@ -260,7 +259,6 @@ let injectDownloadButton = async function () {
       signature.src = (result.watermark !== 'exclude') ? url : '';
     });
     
-    zip.file("signature.png", signature.src);
     for (let i = 0; i < images.length; i++) {
       let img = images[i];
       let canvas = document.createElement("canvas");
